@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  编号:<input placeholder="请输入编号"type="text"id="uid">
+		<button onclick="deluser()">删除</button>
+		<script>
+    function deluser(){
+			var $uid=uid.value;
+			if($uid=="")
+			{
+			alert('编号不能为空')
+			return
+			}
+		var xhr=new XMLHttpRequest();
+		xhr.onreadystatechange=function(){
+		if (xhr.readyState==4&&xhr.status==200)
+		{
+		  var result=xhr.responseText;
+			console.log(result)
+			alert(result);
+		}
+		}
+		
+		console.log($uid)
+		xhr.open('delete',`/user/api/v1/deluser/${$uid}`,true);
+		xhr.send();
+		
+		
+		}
+ 
+ </script>
+ </body>
+</html>

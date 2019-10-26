@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body onload="data">
+  <input type="text"id="uname"><br>
+		<input type="text"id="upwd"><br>
+    <input type="text"id="email"><br>
+    <input type="text"id="phone"><br>
+    <input type="text"id="user_name"><br>
+    <input type="radio"id="man"name="1">男
+    <input type="radio"id="woman"name="1">女<br>
+		<button onclick="update()">修改</button>
+    <script>
+			function data(){
+				var urlparams=new URLSearchParams(location.search)
+				var $uid=urlparams.get("uid")
+				console.log($uid)
+			var xhr=new XMLHttpRequest();
+			xhr.onreadystatechange=function(){
+			if (xhr.readyState==4&&xhr.status==200)
+			{
+				var result=xhr.responseText;
+				var arr=JSON.parse(result)
+				
+				uname.value=arr[0].uname
+				upwd.value=arr[0].upwd
+				email.value=arr[0].email
+				phone.value=arr[0].phone
+				user_name.value=arr[0].user_name
+				if (arr[0].gender==1)
+				{
+					man.checked=true
+
+				}
+        else{woman.checked=true}
+			}
+			
+			}
+			xhr.open('get',`/user/api/v1/searchuser1/${$uid}`)
+			xhr.send(null);
+			}
+			function update(){
+				var $uname=uname.value;
+				var $upwd=upwd.value;
+				var $phone=phone.value;
+				var $email=email.value;
+				var urlparams=new URLSearchParams(location.search)
+				var $uid=urlparams.get("uid")
+				var xhr=new XMLHttpRequest();
+				xhr.onreadystatechange=function(){
+				if (xhr.readyState==4&&xhr.status==200)
+				{
+					var result=xhr.responseText;
+					alert(result);
+					location.href="http://127.0.0.1:8082/userlist.html"
+				}			
+				}
+				
+				
+				if (man.checked==true)
+				{
+					$gender=1
+				}
+				if(woman.checked==true)
+				{
+					$gender=0
+				}
+        xhr.open('put','/user/api/v1/updateuser1/',true)
+        var formdata='uid='+$uid+'&uname='+$uname+'&upwd='+$upwd+'&phone='+$phone+'&email='+$email+'&gender='+$gender;
+				xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+				xhr.send(formdata);
+			
+			}
+		
+		
+		</script>
+ </body>
+</html>

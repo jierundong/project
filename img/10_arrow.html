@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<script>
+var arr=[12,3,23,123,1,2];;
+arr.sort(function(a,b){return a-b});
+console.log(arr);//1 2 3 12 23 123
+
+var str="you can you up";
+str=str.replace(
+  /\b[a-z]/g,
+  function(kw){
+    return kw.toUpperCase();
+  }
+)
+console.log(str);//You Can You Up
+
+var arr=[1,2,3,4,5];
+arr.forEach(function(value,i,arr){
+  arr[i]*=2;
+})
+console.log(arr);// 2 4 6 8 10
+
+var arr=[1,2,3,4,5];
+var evens=arr.map(function(value){
+  return value*2;
+})
+console.log(arr);
+console.log(evens);
+
+setInterval(function(){
+  console.log("滴答...");
+},1000);
+
+(function(){
+  console.log("我是匿名函数自调")
+})();
+
+//右键另存为下载！不要单击打开！
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+.top1{
+    margin-top: -20%;
+}
+.mt-15{
+    margin-top: 180px;
+}
+.BOX p{
+    font-size: 12px;
+    color: #666;
+}
+.BOX p:hover{cursor: default;
+    color:#D19F4F
+
+}
+.gray{
+    color:#E5E5E5
+}
+.yuanjia{
+    font-size: 20px;
+    cursor: text;
+    color: #999999;
+}
+.xianjia{
+    font-size: 25px !important;
+    color: black !important;
+}
+.shop_body p{
+    color: #999;
+  font-size: 12px;
+}
+@media screen and (max-width:767px){
+    .sm-w{
+        width: 80% !important;}
+}
+@media screen and (min-width:768px){
+    .md-w{
+        width: 50% !important;}
+}

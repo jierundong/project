@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <link rel="stylesheet" href="../css/exam.css"/>
+  <title>欢迎登录</title>
+	<style>
+	.d1{
+	  width:1920px;
+		height:1080px;
+		background-image:url("bg1.jpg");
+		background-size:cover;
+		background-repeat:no-repeat;
+	}
+	.d2{
+	  width:400px;
+		height:450px;
+		margin-left:37%;
+    margin-top:8%;
+		padding:35px;
+    background-color:rgba(59,31,3,0.5)}
+		a{color:white;text-decoration:none}
+	span{background-color:red;font-size:20px;color:white}
+	.t2{width:380px;height:50px;color:white;font-size:20px}
+	.t2 input{width:30px;height:18px}
+	.input1{width:380px;height:50px;background-image:linear-gradient(to left,#8E4D12 0.02%,white 100%);font-size:25px;border:none}
+	.input2{width:380px;height:50px;background-image:linear-gradient(to left,#8E4D12 0.02%,white 100%);font-size:25px;border:none;margin-top:20px}
+	button{width:180px;height:50px;background-image:linear-gradient(to bottom,#0AA1ED 20%,#0A5DC9 100%);border:none;font-size:20px;color:white;border-radius:5%}
+	
+	button:hover{width:180px;height:50px;background-image:linear-gradient(to bottom,white 5%,red 100%);border:none;font-size:20px;color:white;border-radius:5%}
+	button:active{width:180px;height:50px;border:none;font-size:20px;color:black;
+	border-radius:5%}
+	.t1{font-size:35px;color:#AF6724;margin-left:10px}
+	</style>
+ </head>
+ <body>
+ <div class="d1">
+ <table></table>
+		<div class="d2">
+		 <table class="t1">
+    	<tr>
+    		<th>艺术品网平台登录页面</th>
+      </tr>
+			<tr><td><hr /></td></tr>
+     </table>
+			<input placeholder="&nbsp&nbsp&nbsp请输入用户名"type="text"id="uname"onfocus="a()"onblur="b()"class="input1"><br /><span id="msg1"></span><br>
+			<input placeholder="&nbsp&nbsp&nbsp请输入密码" type="text"id="upwd"onfocus="c()"onblur="d()"class="input2"><br /><span id="msg2"></span><br><br />
+			<table class="t2">
+			<tr><td>
+			<input type="checkbox"checked id="z1"><label for="z1">自动登录</label></td>
+			<td align="right"><a href="">忘记密码?</a></td>
+			</tr>
+      </table>
+			<button onclick="cao()">登录</button>&nbsp&nbsp&nbsp&nbsp
+			<button onclick="hanxu()">注册</button>
+		</div>
+ </div>
+ <script>
+		function a(){
+      msg1.innerHTML="用户名2-8位"
+		}
+		function b(){
+			var $uname=uname.value;
+		if ($uname=="")
+		{
+			msg1.innerHTML="用户名不能为空"
+		}
+		else if ($uname.length>8||$uname.length<2)
+		{
+			msg1.innerHTML="用户名格式不正确"
+		}
+		else
+		{
+      msg1.innerHTML="正确"
+		}
+		
+		}
+		function c(){
+      msg2.innerHTML="密码6-8位"
+		}
+		function d(){
+			var $upwd=upwd.value;
+		if ($upwd=="")
+		{
+			msg2.innerHTML="密码不能为空"
+		}
+		else if ($upwd.length>8||$upwd.length<3)
+		{
+			msg2.innerHTML="密码格式不正确"
+		}
+		else
+		{
+      msg2.innerHTML="正确"
+		}
+		
+		}
+		
+		
+		function cao(){
+			var $uname=uname.value;
+		var $upwd=upwd.value;
+		if ($uname=="")
+		{
+			alert("用户名不能为空")
+			return
+		}
+		if ($upwd=="")
+		{
+			alert("密码不能为空")
+			return
+		}
+		var xhr=new XMLHttpRequest();
+		xhr.onreadystatechange=function(){
+		if (xhr.readyState==4&&xhr.status==200)
+		{
+			var result=xhr.responseText;
+			if(result==1){
+				alert("登陆成功");
+				location.href="http://127.0.0.1:5502/HTML/main.html"
+			}else{
+				alert("登陆失败");
+				location.href="http://localhost:8084/login.html"
+			}
+		}
+		
+		}
+    
+		xhr.open('get',`/user/api/v1/login1/${$uname}&${$upwd}`,true)
+		xhr.send();
+		} 
+		function hanxu()
+		{
+		location.href="http://localhost:8084/register.html"
+		}
+		
+ </script>
+		
+ </body>
+    
+</html>

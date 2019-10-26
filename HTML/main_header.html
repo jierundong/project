@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width"
+    =device-width,initial-scale=1">
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/common.css"/>
+</head>
+<body>
+<div class="container body_back">
+    <div class="row mt-5">
+        <div class="col-lg-3 col-sm-4 ">
+            <img style="width:60%" src="../img/art1.jpg" alt=""/>
+        </div>
+        <div id="header_middle" class="col-lg-6 col-sm-8 px-0 navbar navbar-expand-sm ">
+            <button  data-toggle="collapse"data-target="#content"class="navbar-toggler bg-gray ml-5">
+                <p class="text-white mb-1">&gt;</p>
+            </button>
+            <div id="content" class="collapse navbar-collapse bg-sm-gray bg-md-white">
+                <ul class="navbar-nav px-0">
+                    <br/>
+                    <li class="nav-item"><a href="main.html" class="nav-link" onclick="main()">首页/HOME</a></li>
+                    <li class="nav-item"><a href="" class="nav-link"onclick="shop()">商城/SHOP</a></li>
+                    <li class="nav-item"><a href="boke.html" class="nav-link"onclick="boke()">博客/BLOG</a></li>
+                    <li class="nav-item"><a href="" class="nav-link"onclick="about()">关于/ABOUT</a></li>
+                    <li class="nav-item"><a href="" class="nav-link"onclick="contact()">联系/CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-12 header_right ml-3 ">
+            <ul class="breadcrumb bg-white text-dark">
+                <li class="breadcrumb-item"><a class="text-muted" href="" onclick="zc()">注册</a></li>
+                <li class="breadcrumb-item"><a class="text-muted" href="" onclick="dl()">登录</a></li>
+                <li class="breadcrumb-item"><a href=""><img src="../img/shop_car.png" alt=""/></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+function main(){
+	top.location.href="main.html"
+}
+function shop(){
+	top.location.href="shop.html"
+}
+function boke(){
+	top.location.href="boke.html"
+}
+function about(){
+	top.location.href="about.html"
+}
+function contact(){
+	top.location.href="contact.html"
+}
+function zc(){
+    top.location.href="http://localhost:8084/register.html"
+}
+function dl(){
+    top.location.href="http://localhost:8084/login.html"
+}
+</script>
+</body>
+</html>

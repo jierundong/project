@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>欢迎注册</title>
+	<style>
+	.d1{
+	  width:1920px;
+		height:1080px;
+		background-image:url("bg2.jpg");
+		background-size:cover;
+		background-repeat:no-repeat;	
+	}
+	.d2{width:400px;
+		height:600px;
+		margin-left:70%;
+    margin-top:4%;
+		padding:35px;
+    background-color:rgba(242,255,255,0.2)
+	}
+	span{width:380px;height:30px;background-color:red;font-size:20px;color:white}
+	input{width:380px;height:30px;background-image:linear-gradient(to right,#12E8D3 0.02%,white 100%);font-size:20px;border-radius:5%}
+	button{width:380px;height:50px;background-image:linear-gradient(to bottom,#0AA1ED 20%,#0A5DC9 100%);;border:none;font-size:20px;color:white;border-radius:5%;margin-top:10px}
+	
+	button:hover{width:380px;height:50px;background-image:linear-gradient(to bottom,white 5%,red 100%);border:none;font-size:20px;color:white;border-radius:5%;margin-top:10px}
+	button:active{width:380px;height:50px;border:none;font-size:20px;color:black;
+	border-radius:5%;margin-top:10px}
+	table{font-size:35px;color:#129DD6;margin-left:10px}
+	.i1{color:white;font-size:20px;}
+	#man{width:30px;height:20px;margin-left:-12px}
+	#woman{width:30px;height:20px;margin-left:50px}
+	
+	
+	
+	</style>
+ </head>
+ <body>
+ <div class="d1">
+ <table></table>
+ <div class="d2">
+    <table>
+    	<tr>
+    		<th>艺术品网平台注册页面</th>
+      </tr>
+			<tr><td><hr /></td></tr>
+    </table>
+		<input placeholder="&nbsp&nbsp&nbsp请输入用户名"type="text" onfocus="a()"onblur="b()"id="uname"><br /><span id="msg"></span><br>
+  <input placeholder="&nbsp&nbsp&nbsp请输入密码"type="text" onfocus="c()"onblur="d()"id="upwd"><br /><span id="msg1"></span><br>
+  <input placeholder="&nbsp&nbsp&nbsp请再次输入密码"type="text"onblur="e()"id="upwde"><br /><span id="msg11"></span><br>
+  <input placeholder="&nbsp&nbsp&nbsp请输入邮箱"type="email" onblur="f()"id="email"><br /><span id="msg2"></span><br>
+  <input placeholder="&nbsp&nbsp&nbsp请输入电话号"type="text" onblur="g()"id="phone"><br /><span id="msg3"></span><br>
+<input placeholder="&nbsp&nbsp&nbsp请输入真实姓名"type="text " onblur="h()"id="user_name"><br /><span id="msg4"></span><br>
+<table class="i1">
+	<tr>
+		<td><input type="radio" id="man"name="1"checked>男</td>
+		<td><input type="radio" id="woman"name="1">女</td>
+	</tr>
+</table>
+	<button onclick="registeruser()">注册用户信息</button>
+ </body>
+ <script>
+ var isReg=true;
+		function a(){
+		  msg.innerHTML="用户名2-8位"
+		}
+		function b(){
+			var $uname=uname.value;
+			if ($uname=="")
+			{
+			msg.innerHTML="用户名不能为空"
+			}
+      else if($uname.length<2||$uname.length>8)
+			{
+		  msg.innerHTML="用户名格式错误"
+			}
+		  else
+			{
+       var xhr=new XMLHttpRequest();
+			 xhr.onreadystatechange=function(){
+				 if (xhr.readyState==4&&xhr.status==200)
+				 {
+					 var result=xhr.responseText;
+           
+           if (result==0)
+           {
+						 msg.innerHTML="用户名不可用";
+             isReg=false
+           }else{ msg.innerHTML="用户名可用";isReg=true}
+				 }
+			 
+			 }
+			 var $uname=uname.value;
+			  xhr.open('post','/user/api/v1/register2/',true);
+			 formdata='uname='+$uname;
+				xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+				xhr.send(formdata);
+			}
+		
+		}
+		function c(){
+			msg1.innerHTML="密码3-8位"
+		}
+		function d(){
+			var $upwd=upwd.value;
+			if ($upwd=="")
+			{
+			msg1.innerHTML="密码不能为空"
+			
+
+			}
+      else if($upwd.length<3||$upwd.length>8)
+			{
+		  msg1.innerHTML="密码格式错误"
+			}
+			else{msg1.innerHTML="正确";}
+      }
+			function e(){
+			var $upwde=upwde.value;
+			var $upwd=upwd.value;
+			if ($upwde=="")
+			{
+			msg11.innerHTML="密码不能为空"
+			}
+      else if($upwd!=$upwde)
+			{
+		  msg11.innerHTML="2次密码输入不一致"
+			isReg=false
+			}
+			else{msg11.innerHTML="正确"	;}
+      }
+		function f(){
+			var $email=email.value;
+			if ($email=="")
+			{
+			msg2.innerHTML="邮件不能为空"
+			}else{msg2.innerHTML="正确"}
+		}
+		function g(){
+			var $phone=phone.value;
+			if ($phone=="")
+			{
+			msg3.innerHTML="电话不能为空"
+			}else{msg3.innerHTML="正确"}
+		
+		}
+		function h(){
+			var $user_name=user_name.value;
+			if ($user_name=="")
+			{
+			msg4.innerHTML="真实姓名不能为空"
+			}else{msg4.innerHTML="正确"}
+		}
+        function  registeruser(){
+        	var $uname=uname.value;
+        	var $upwd=upwd.value;
+        	var $email=email.value;
+        	var $phone=phone.value;
+        	var $user_name=user_name.value;
+				if($uname==""||$upwd==""||$email==""||$user_name==""||$phone==""){isReg=false}
+				var xhr=new XMLHttpRequest();
+				xhr.onreadystatechange=function(){
+				if (xhr.readyState==4&&xhr.status==200)
+				{
+					var result=xhr.responseText;
+					console.log(result)
+					if(result==1){
+					alert('注册成功');
+					location.href="http://localhost:8084/login.html"}
+					
+				}			
+				}
+				var $gender=1
+				if (man.checked==true)
+				{
+					$gender=1
+				}
+				if(woman.checked==true)
+				{
+					$gender=0
+				}
+
+        xhr.open('post','/user/api/v1/register3/',true)
+        var formdata='uname='+$uname+'&upwd='+$upwd+'&email='+$email+'&phone='+$phone+'&user_name='+$user_name+'&gender='+$gender;
+				xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')	
+				if (isReg)
+				{
+					xhr.send(formdata)
+				}
+				else{alert('用户信息填写有误')
+					location.href="http://localhost:8084/register.html"
+				}
+			}
+ </script>
+
+		</div>
+	</div>
+ </body>
+</html>

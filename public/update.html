@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  <!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+    修改号:<input placeholder="请输入修改编号"type="text"id="uid"><br>
+		用户名:<input placeholder="请输入用户名"type="text"id="uname"><br>
+		密码:  &nbsp&nbsp<input placeholder="请输入密码"type="text"id="upwd"><br>
+		电话号:<input placeholder="请输入您的电话号"type="text"id="phone"><br>
+		邮箱:  &nbsp&nbsp<input placeholder="邮箱"type="text"id="email"><br>
+		<button onclick="update()">修改</button>
+ </body>
+		<script>
+			function update(){
+				var xhr=new XMLHttpRequest();
+				xhr.onreadystatechange=function(){
+				if (xhr.readyState==4&&xhr.status==200)
+				{
+					var result=xhr.responseText;
+					alert(result);
+				}			
+				}
+				var $uid=uid.value;
+				var $uname=uname.value;
+				var $upwd=upwd.value;
+				var $phone=phone.value;
+				var $email=email.value;
+        xhr.open('put','/user/api/v1/updateuser1/',true)
+        var formdata='uid='+$uid+'&uname='+$uname+'&upwd='+$upwd+'&phone='+$phone+'&email='+$email;
+				xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+				xhr.send(formdata);
+			
+			}
+		</script>
+ </body>
+</html>

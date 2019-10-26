@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title><style>
+	a{color:blue}</style>
+ </head>
+ <body onload="data()">
+   <div id="d1"></div>
+		<script>
+		 function deluser($uid){
+		var xhr=new XMLHttpRequest();
+		xhr.onreadystatechange=function(){
+		if (xhr.readyState==4&&xhr.status==200)
+		{
+		  var result=xhr.responseText;
+			if (result==1)
+			{
+				alert('删除成功')
+				data();
+			}
+			else{alert('删除失败')}
+		}
+		}
+		xhr.open('delete',`/user/api/v1/deluser/${$uid}`,true);
+		xhr.send();
+		
+		
+		}
+		function data(){
+		var xhr=new XMLHttpRequest();
+			 xhr.onreadystatechange=function(){
+				 if (xhr.readyState==4&&xhr.status==200)
+				 {
+					 var result=xhr.responseText;
+					 var users=JSON.parse(result);
+					 var strHTML=`<table border="1px">
+						<tr>
+							<th>登录名称</th>
+							<th>电子邮箱</th>
+							<th>联系方式</th>
+							<th>用户姓名</th>
+							<th>用户性别</th>
+							<th>操作</th>
+						</tr>
+				`;
+				for (var i=0;i<users.length;i++)
+				{
+				  strHTML+=`
+					<tr>
+							<td>${users[i].uname}</td>
+							<td>${users[i].email}</td>
+							<td>${users[i].phone}</td>
+							<td>${users[i].user_name}</td>
+							<td>${users[i].gender==1?"男":(users[i].gender==0?"女":"不详")}
+							</td>
+							<td ="blue">
+							<a href="javascript:deluser(${users[i].uid})">删除</a>
+							<a href="searchuser.html?uid=${users[i].uid}">修改</a>
+							</td>
+						</tr>
+					`;
+
+				}
+				strHTML+=`</table>`
+           
+           d1.innerHTML=strHTML;
+				 }
+			 
+			 }
+		   xhr.open('get','/user/v1/userlist',true)
+		   xhr.send();
+		}
+ 
+ 
+  </script>
+ </body>
+</html>

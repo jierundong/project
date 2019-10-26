@@ -1,0 +1,9 @@
+@media screen and (min-width:1200px){
+    .my_header_h{height: 8rem;}
+}
+@media screen and (min-width:992px) and (max-width:1199px){
+    .my_header_h{height: 10rem;}
+}
+@media screen and (max-width:991px){
+    .my_header_h{height: 13rem;}
+}
